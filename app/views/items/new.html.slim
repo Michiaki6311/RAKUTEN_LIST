@@ -1,0 +1,15 @@
+.search
+  = form_tag new_item_path , method: :get do
+    = text_field_tag :q , params[:q], placeholder: "キーワードを入力", required: true
+    = submit_tag "アイテムを検索", name: nil , class: "btn btn-success", data: { disable_with: "検索中..."}
+.search-result
+  -if @items.present?
+    .alert.alert-info
+      span.glyphicon.glyphicon-info-sign aria-hidden="true"
+      |
+        気になったアイテムが欲しければ「Want」持ってれば「Have」しましょう
+    == render 'items' , items: @items
+  -elsif params[:q].present?
+    .alert.alert-danger
+      span.glyphicon.glyphicon-remove-sign aria-hidden="true"
+      検索したアイテムはありません

@@ -1,0 +1,12 @@
+.container
+  .container-inner.inner-default.clearfix
+    -items.each do |item|
+      .item-box
+        .image
+          .img-wrap
+            #TODO 商品画像
+            = image_tag(item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '') , alt: item['itemName'])
+        .detail
+          p.title
+            #TODO 商品タイトル
+            a href="#{item['itemUrl']}"  #{item['itemName']}

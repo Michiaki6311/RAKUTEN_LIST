@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Return fully each page title
   def full_title(page_title = '')
-    base_title = "CDKANRI"
+    base_title = "Monolist"
     if page_title.empty?
       base_title
     else

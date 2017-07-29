@@ -1,0 +1,10 @@
+.container
+  .container-inner.inner-default.clearfix
+    -items.each do |item|
+      .item-box
+        .image
+          img-wrap
+            -if item.large_image.present?
+              = image_tag(item.laegr_image, alt: item.title)
+            -else
+              = image_tag("no-image.png", alt: item.title)

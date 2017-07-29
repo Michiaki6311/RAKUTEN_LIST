@@ -1,0 +1,24 @@
+.container
+  .container-inner.inner-sm.clearfix
+    .item-single-main
+      .image
+        .img-wrap
+          #TODO 商品イメージ
+          = image_tag("no-image.png" , alt: @item.title)
+      .title
+         #TODO 商品タイトル
+        仮タイトル
+      == render 'action' , item: @item
+    .item-single-side
+      .side-box
+        .side-box-title Haveしたユーザー
+        .side-box-body
+           # TODO Haveしたユーザー一覧
+
+      .side-box
+        .side-box-title Wantしたユーザー
+        .side-box-body
+           # TODO Wantしたユーザー一覧
+      .text-center
+         #TODO 正しいリンク先に
+        = link_to('楽天詳細ページへ', '#')
