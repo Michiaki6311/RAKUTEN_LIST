@@ -1,8 +1,14 @@
 header.navbar.navbar-fixed-top.navbar-inverse
-  div.container
-    = link_to "Monolist", root_path, id:'logo'
+  .container
+    .navbar-header
+      button.navbar-toggle data-toggle="collapse" data-target="#mainNav"
+        span.sr-only ナビゲーション
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to "Monolist", root_path, id:'logo'
 
-    nav
+    .collapse.navbar-collapse#mainNav
       ul.nav.navbar-nav.navbar-right
         li= link_to "Home",   root_path
         li= link_to "Help",   help_path
