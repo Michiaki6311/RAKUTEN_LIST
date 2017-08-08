@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802051204) do
+ActiveRecord::Schema.define(version: 20170808054527) do
 
   create_table "items", force: :cascade do |t|
     t.string "asin"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20170802051204) do
     t.index ["item_id"], name: "index_ownerships_on_item_id"
     t.index ["user_id", "item_id", "type"], name: "index_ownerships_on_user_id_and_item_id_and_type", unique: true
     t.index ["user_id"], name: "index_ownerships_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,16 +8,18 @@
     ul
       li
         .status-label FOLLOWING
-        .status-value 1
+        .status-value #{@user.following_users.count}
       li
         .status-label FOLLOWER
-        .status-value 1
+        .status-value #{@user.follower_users.count}
       li
         .status-label WANT
         .status-value #{@user.want_items.count}
       li
         .status-label HAVE
         .status-value #{@user.have_items.count}
+    -if logged_in?
+      ==render 'follow_form'
 -if current_user == @user
   h2 あなたがHaveもしくはWantしているアイテム一覧
 -else
