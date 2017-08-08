@@ -3,22 +3,22 @@
     .item-single-main
       .image
         .img-wrap
-          #TODO 商品イメージ
-          = image_tag("no-image.png" , alt: @item.title)
+          = image_tag(@item.large_image , alt: @item.title)
       .title
-         #TODO 商品タイトル
-        仮タイトル
-      == render 'action' , item: @item
+        |#{@item.title}
     .item-single-side
       .side-box
-        .side-box-title Haveしたユーザー
+        .side-box-title Haveしたユーザー #{@item.have_users.count}人
         .side-box-body
-           # TODO Haveしたユーザー一覧
+           -@item.have_users.each do |have_user|
+             =link_to  gravatar_for(have_user,size:30),have_user
+             span style="margin-right: 1em;"
 
       .side-box
-        .side-box-title Wantしたユーザー
+        .side-box-title Wantしたユーザー #{@item.want_users.count}人
         .side-box-body
-           # TODO Wantしたユーザー一覧
+          -@item.want_users.each do |want_user|
+            =link_to gravatar_for(want_user,size:30),want_user
+            span style="margin-right: 1em;"
       .text-center
-         #TODO 正しいリンク先に
-        = link_to('楽天詳細ページへ', '#')
+        = link_to('楽天詳細ページへ', @item.detail_page_url)

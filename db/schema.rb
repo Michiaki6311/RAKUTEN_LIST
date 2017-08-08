@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727112814) do
+ActiveRecord::Schema.define(version: 20170802051204) do
 
   create_table "items", force: :cascade do |t|
     t.string "asin"
@@ -23,7 +23,19 @@ ActiveRecord::Schema.define(version: 20170727112814) do
     t.string "raw_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "item_code"
     t.index ["asin"], name: "index_items_on_asin", unique: true
+  end
+
+  create_table "ownerships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_ownerships_on_item_id"
+    t.index ["user_id", "item_id", "type"], name: "index_ownerships_on_user_id_and_item_id_and_type", unique: true
+    t.index ["user_id"], name: "index_ownerships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

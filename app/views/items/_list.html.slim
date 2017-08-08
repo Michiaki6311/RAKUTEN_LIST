@@ -8,6 +8,25 @@
               = image_tag(item.large_image, alt: item.title)
             -else
               = image_tag("no-image.png", alt: item.title)
-          .detail
-            p.title
-              =item.title
+        .detail
+          p.title
+            =link_to "#{item.title}","#{item.detail_page_url}"
+        .action.clearfix
+          -if current_user
+            -if current_user.want_items.include?(item)
+              ==render 'items/unwant',item: item
+            -else
+              = link_to "", ownerships_path(item_id: item.id , type: "Want") ,
+                          :class => "btn-want btn btn-danger btn-sm want",
+                          :item_code => "want-#{item.item_code}",
+                          :remote => true,
+                          :method => :post
+            -if current_user.have_items.include?(item)
+              == render 'items/unhave',item: item
+            -else
+              = link_to "", ownerships_path(item_id: item.id , type: "Have") ,
+                          :class => "btn-have btn btn-warning btn-sm have",
+                          :item_code => "have-#{item.item_code}",
+                          :remote => true,
+                          :method => :post
+            = link_to "詳細", item, class: "btn btn-info btn-sm"

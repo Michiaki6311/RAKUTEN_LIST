@@ -1,4 +1,13 @@
 class User < ApplicationRecord
+  has_many :ownerships , foreign_key: "user_id", dependent: :destroy
+  has_many :items, through: :ownerships
+
+  has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy
+  has_many :want_items , through: :wants, source: :item
+
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items , through: :haves, source: :item
+
   before_save { self.email = self.email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -6,4 +15,29 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+
+  ## TODO実装
+  def have(item)
+    haves.find_or_create_by(item_id: item.id)
+  end
+
+  def unhave(item)
+    haves.find_by(item_id: item.id).destroy
+  end
+
+  def have?(item)
+    have_items.find_by(item_code: item['itemCode'])
+  end
+
+  def want(item)
+    wants.find_or_create_by(item_id: item.id)
+  end
+
+  def unwant(item)
+    wants.find_by(item_id: item.id).destroy
+  end
+
+  def want?(item)
+    want_items.find_by(item_code: item['itemCode'])
+  end
 end

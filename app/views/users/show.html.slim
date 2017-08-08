@@ -1,3 +1,25 @@
-h1
-  =gravatar_for @user
-  =@user.name
+.user_profile
+  .icon
+    =gravatar_for @user
+  .name
+    =@user.name
+
+  .status
+    ul
+      li
+        .status-label FOLLOWING
+        .status-value 1
+      li
+        .status-label FOLLOWER
+        .status-value 1
+      li
+        .status-label WANT
+        .status-value #{@user.want_items.count}
+      li
+        .status-label HAVE
+        .status-value #{@user.have_items.count}
+-if current_user == @user
+  h2 あなたがHaveもしくはWantしているアイテム一覧
+-else
+  h2 #{@user.name}さんがHaveもしくはWantしているアイテム一覧
+== render 'items/list',items: @items
