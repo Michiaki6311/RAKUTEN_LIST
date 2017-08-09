@@ -10,7 +10,7 @@ html
     .container
       == render 'layouts/header'
 
-      div.container
+      .container
         -flash.each do |message_type, message|
           div class="alert alert-#{message_type}" =message
         == yield

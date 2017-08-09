@@ -1,7 +1,5 @@
 .jumbotron style="color:#FFF;  background:url(#{asset_path 'monolist.jpg'});  background-size:cover;"
   h1  Monolist
-  p  好きなモノを見つける。
   = link_to '会員登録', signup_path, class: "btn btn-success btn-lg"
-h2 欲しいアイテムには「Want」を持っているアイテムには「Have」を押しましょう。
 
 ==render 'items/list',items: @items
