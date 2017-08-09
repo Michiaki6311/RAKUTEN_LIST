@@ -1,15 +1,3 @@
-@media (max-width: 768px) {
-  .navbar-header {
-    margin-left: 15px !important;
-  }
-  .navbar-toggle {
-    margin-top: 11px;
-  }
-  .navbar-collapse {
-    margin-top: 10px;
-  }
-}
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -26,3 +14,14 @@
   text-decoration: none;
 }
 
+header {
+  .container{
+    .navbar-header{
+      margin: 7px;
+    }
+  }
+}
+
+#mainNav {
+  margin: 7px;
+}

@@ -1,5 +1,5 @@
 .jumbotron style="color:#FFF;  background:url(#{asset_path 'search.jpg'});  background-size:cover;"
-  p アイテムを検索
+  h2 アイテムを検索
 .search
   = form_tag new_item_path , method: :get do
     = text_field_tag :q , params[:q], placeholder: "キーワードを入力", required: true
